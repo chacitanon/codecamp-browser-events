@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BrowserEvents - Lab #4</title>
+  </head>
+  <body>
+    <label for="provinces">Choose a provinces:</label>
+    <select id="provinces">
+      <option value="">Please select</option>
+      <option value="bangkok">Bangkok</option>
+      <option value="nonthaburi">Nonthaburi</option>
+    </select>
+    <label for="districts">Choose a districts:</label>
+    <select id="districts"></select>
+    <script>
+      const PROVINCE_DISTRICT_MAPPING = {
+        bangkok: ["Ratchathewi", "Patumwan"],
+        nonthaburi: ["Muang", "Pakgret"],
+      };
+      // Selectors
+      const provincesSelect = document.getElementById("provinces");
+
+      // Event Listeners
+      provincesSelect.addEventListener("change", selectDistricts);
+
+      // Functions
+      function selectDistricts(event) {
+        const districtsSelect = document.getElementById("districts");
+        const districts = PROVINCE_DISTRICT_MAPPING[event.target.value];
+
+        const districtOptions = districts.reduce((acc, district) => {
+          return acc + `<option value=${district}>${district}</option>`;
+        }, "");
+
+        districtsSelect.innerHTML = districtOptions;
+      }
+    </script>
+  </body>
+</html>

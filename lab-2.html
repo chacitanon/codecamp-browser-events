@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BrowserEvents - Lab #2</title>
+  </head>
+  <body>
+    <button id="main-button">Click to hide button</button>
+    <script>
+      // Selectors
+      const button = document.getElementById("main-button");
+
+      // Event Listeners
+      button.addEventListener("click", hideButton);
+
+      // Functions
+      function hideButton() {
+        button.style.display = "none";
+      }
+    </script>
+  </body>
+</html>

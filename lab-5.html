@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BrowserEvents - Lab #5</title>
+  </head>
+  <body>
+    <button id="add-counter-button">+</button>
+    <button id="subtract-counter-button">-</button>
+    <button id="reset-counter-button">Reset</button>
+    <div class="counter-container">
+      <span class="counter-text">0</span>
+    </div>
+    <script>
+      // Selectors
+      const addCounterButton = document.getElementById("add-counter-button");
+      const subtractCounterButton = document.getElementById(
+        "subtract-counter-button"
+      );
+      const resetCounterButton = document.getElementById(
+        "reset-counter-button"
+      );
+      const counterText = document.querySelector(".counter-text");
+
+      // Event listerners
+      addCounterButton.addEventListener("click", addCounter);
+      subtractCounterButton.addEventListener("click", subtractCounter);
+      resetCounterButton.addEventListener("click", resetCounter);
+
+      // Functions
+      function addCounter() {
+        counterText.innerHTML = Number(counterText.innerHTML) + 1;
+      }
+
+      function resetCounter() {
+        counterText.innerHTML = 0;
+      }
+
+      function subtractCounter() {
+        if (counterText.innerHTML > 0) {
+          counterText.innerHTML = Number(counterText.innerHTML) - 1;
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BrowserEvents - Lab #6</title>
+    <style>
+      * {
+        font-size: 32px;
+      }
+      li {
+        cursor: pointer;
+      }
+      .completed {
+        text-decoration: line-through;
+      }
+    </style>
+  </head>
+  <body>
+    <input class="todo-input" type="text" />
+    <button class="todo-add-button">Add</button>
+    <ul class="todo-container"></ul>
+
+    <script>
+      // Selectors
+      const todoContainer = document.querySelector(".todo-container");
+      const todoAddButton = document.querySelector(".todo-add-button");
+      const todoDeleteButton = document.querySelector(".todo-delete-button");
+      const todoEditButton = document.querySelector(".todo-edit-button");
+      const todoInput = document.querySelector(".todo-input");
+
+      // Event Listeners
+      todoAddButton.addEventListener("click", addTodo);
+
+      // Functions
+      function addTodo(event) {
+        const todoItem = document.createElement("div");
+        todoItem.classList.add("todo-item");
+
+        const todoItemText = document.createElement("li");
+        todoItemText.innerHTML = todoInput.value;
+        todoItemText.addEventListener("click", completeTodo);
+
+        const deleteButton = document.createElement("button");
+        deleteButton.innerHTML = "Delete";
+        deleteButton.classList.add("todo-delete-button");
+        deleteButton.addEventListener("click", deleteTodo);
+
+        const editButton = document.createElement("button");
+        editButton.innerHTML = "Edit";
+        editButton.classList.add("todo-edit-button");
+        editButton.addEventListener("click", editTodo);
+
+        todoItem.appendChild(todoItemText);
+        todoItem.appendChild(deleteButton);
+        todoItem.appendChild(editButton);
+
+        todoContainer.appendChild(todoItem);
+
+        todoInput.value = "";
+      }
+
+      function completeTodo(event) {
+        event.target.classList.toggle("completed");
+      }
+
+      function deleteTodo(event) {
+        const todoItem = event.target.parentElement;
+        todoItem.remove();
+      }
+
+      function editTodo(event) {
+        let todoText =
+          event.target.previousElementSibling.previousElementSibling;
+        const newTodoText = prompt(
+          "please enter new todo text",
+          todoText.innerHTML
+        );
+        todoText.innerHTML = newTodoText;
+      }
+    </script>
+  </body>
+</html>
